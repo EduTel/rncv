@@ -1,74 +1,109 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Platform,
+  View,
+  Dimensions,
+  Text,
+  FlatList,
+  TouchableHighlight,
+} from "react-native";
+//import { HelloWave } from "@/components/HelloWave";
+//import ParallaxScrollView from "@/components/ParallaxScrollView";
+//import { ThemedText } from "@/components/ThemedText";
+//import { ThemedView } from "@/components/ThemedView";
+import LottieView from "lottie-react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import education from "@/app/json/education.json";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import Fontisto from "@expo/vector-icons/Fontisto";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+const { height, width } = Dimensions.get("window");
+const widthBackground = height * 1.54;
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
+    <SafeAreaView>
+      <View style={styles.animationContainer}>
+        <LottieView
+          source={require("@/app/animation//GlobosAerostatico.json")}
+          autoPlay
+          loop
+          resizeMode="cover"
+          style={styles.animation}
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+      </View>
+      <View style={styles.contentContainer}>
+        <View
+          style={{
+            backgroundColor: "#fff",
+            marginBottom: 10,
+            paddingVertical: 5,
+            flexDirection: "row",
+            justifyContent: "center",
+            gap: 5,
+          }}
+        >
+          <Text style={styles.text}>Education</Text>
+          <Fontisto name="date" size={24} color="black" />
+        </View>
+        <FlatList
+          data={education.experience}
+          renderItem={({ item, index }) => (
+            <TouchableHighlight
+              underlayColor="#fff" // O el mismo color de fondo que uses
+              onPress={() => {}}
+              style={[
+                styles.itemContainer,
+                index % 2 === 1
+                  ? { alignSelf: "flex-end" }
+                  : { alignSelf: "flex-start" },
+              ]}
+            >
+              <>
+                <Text style={styles.text}>{item.company}</Text>
+                <View style={{ flexDirection: "row" }}>
+                  <Text style={styles.textSmall}>{item.start_date}</Text>
+                  <Text style={styles.textSmall}>{item.end_date}</Text>
+                </View>
+              </>
+            </TouchableHighlight>
+          )}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  itemContainer: {
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
+    padding: 10,
+    marginVertical: 5,
+    borderRadius: 8,
+    maxWidth: "50%",
+    //opacity: 0.7,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  textSmall: {
+    fontSize: 15,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  text: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  container: {
+    flex: 1,
+  },
+  contentContainer: {
+    zIndex: 1,
+  },
+  animation: {
+    width: widthBackground,
+    height: height,
+    marginLeft: -widthBackground / 2.2,
+  },
+  animationContainer: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: -1,
   },
 });
