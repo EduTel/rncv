@@ -14,10 +14,10 @@ import {
 //import { ThemedView } from "@/components/ThemedView";
 import LottieView from "lottie-react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import education from "@/app/json/education.json";
+import education from "@/assets/json/education.json";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Fontisto from "@expo/vector-icons/Fontisto";
-
+import Entypo from "@expo/vector-icons/Entypo";
 const { height, width } = Dimensions.get("window");
 const widthBackground = height * 1.54;
 
@@ -47,6 +47,17 @@ export default function HomeScreen() {
           <Text style={styles.text}>Education</Text>
           <Fontisto name="date" size={24} color="black" />
         </View>
+        <View style={{ alignSelf: "center" }}>
+          <LottieView
+            source={require("@/app/animation/locationStart.json")}
+            autoPlay
+            loop
+            resizeMode="cover"
+            renderMode="SOFTWARE"
+            style={styles.locationStart}
+          />
+          {/*<Entypo name="location-pin" size={50} color="yellow" />*/}
+        </View>
         <FlatList
           data={education.experience}
           renderItem={({ item, index }) => (
@@ -70,12 +81,27 @@ export default function HomeScreen() {
             </TouchableHighlight>
           )}
         />
+        <View style={{ alignSelf: "center" }}>
+          <LottieView
+            source={require("@/app/animation/locationEnd.json")}
+            autoPlay
+            loop
+            renderMode="SOFTWARE"
+            style={styles.locationStart}
+          />
+          {/*  <Entypo name="location-pin" size={50} color="red" /> */}
+        </View>
       </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  locationStart: {
+    width: 100,
+    height: 100,
+    opacity: 1,
+  },
   itemContainer: {
     backgroundColor: "rgba(255, 255, 255, 0.8)",
     padding: 10,

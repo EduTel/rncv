@@ -1,25 +1,6 @@
-import {
-  Image,
-  StyleSheet,
-  Platform,
-  View,
-  Dimensions,
-  Text,
-  FlatList,
-  TouchableHighlight,
-  Dimentions,
-} from "react-native";
+import { Image, StyleSheet, View, Dimensions, FlatList } from "react-native";
 import { useState, useEffect } from "react";
-//import { HelloWave } from "@/components/HelloWave";
-//import ParallaxScrollView from "@/components/ParallaxScrollView";
-//import { ThemedText } from "@/components/ThemedText";
-//import { ThemedView } from "@/components/ThemedView";
-import LottieView from "lottie-react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import education from "@/app/json/education.json";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import Fontisto from "@expo/vector-icons/Fontisto";
-import { Banner } from "react-native-paper";
 
 const { height, width } = Dimensions.get("window");
 const widthBackground = height * 1.54;
@@ -98,9 +79,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     fontWeight: "bold",
-  },
-  container: {
-    flex: 1,
   },
   contentContainer: {
     zIndex: 1,
