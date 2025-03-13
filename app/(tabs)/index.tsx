@@ -4,20 +4,15 @@ import {
   Platform,
   View,
   Dimensions,
-  Text,
   FlatList,
-  TouchableHighlight,
 } from "react-native";
-//import { HelloWave } from "@/components/HelloWave";
-//import ParallaxScrollView from "@/components/ParallaxScrollView";
-//import { ThemedText } from "@/components/ThemedText";
-//import { ThemedView } from "@/components/ThemedView";
 import LottieView from "lottie-react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import education from "@/assets/json/education.json";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import Fontisto from "@expo/vector-icons/Fontisto";
-import Entypo from "@expo/vector-icons/Entypo";
+import { EducationCard } from "@/components/education/EducationCard";
+import { Text } from "react-native-paper";
+
 const { height, width } = Dimensions.get("window");
 const widthBackground = height * 1.54;
 
@@ -44,7 +39,7 @@ export default function HomeScreen() {
             gap: 5,
           }}
         >
-          <Text style={styles.text}>Education</Text>
+          <Text variant="titleLarge">Education</Text>
           <Fontisto name="date" size={24} color="black" />
         </View>
         <View style={{ alignSelf: "center" }}>
@@ -56,41 +51,24 @@ export default function HomeScreen() {
             renderMode="SOFTWARE"
             style={styles.locationStart}
           />
-          {/*<Entypo name="location-pin" size={50} color="yellow" />*/}
         </View>
         <FlatList
           data={education.experience}
           renderItem={({ item, index }) => (
-            <TouchableHighlight
-              underlayColor="#fff" // O el mismo color de fondo que uses
-              onPress={() => {}}
-              style={[
-                styles.itemContainer,
-                index % 2 === 1
-                  ? { alignSelf: "flex-end" }
-                  : { alignSelf: "flex-start" },
-              ]}
-            >
-              <>
-                <Text style={styles.text}>{item.company}</Text>
-                <View style={{ flexDirection: "row" }}>
-                  <Text style={styles.textSmall}>{item.start_date}</Text>
-                  <Text style={styles.textSmall}>{item.end_date}</Text>
-                </View>
-              </>
-            </TouchableHighlight>
+            <EducationCard item={item} index={index} />
+          )}
+          ListFooterComponent={() => (
+            <View style={{ alignSelf: "center" }}>
+              <LottieView
+                source={require("@/app/animation/locationEnd.json")}
+                autoPlay
+                loop
+                renderMode="SOFTWARE"
+                style={styles.locationStart}
+              />
+            </View>
           )}
         />
-        <View style={{ alignSelf: "center" }}>
-          <LottieView
-            source={require("@/app/animation/locationEnd.json")}
-            autoPlay
-            loop
-            renderMode="SOFTWARE"
-            style={styles.locationStart}
-          />
-          {/*  <Entypo name="location-pin" size={50} color="red" /> */}
-        </View>
       </View>
     </SafeAreaView>
   );
