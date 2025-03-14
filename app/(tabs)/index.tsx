@@ -8,6 +8,7 @@ import { EducationCard } from "@/components/education/EducationCard";
 import { Switch, Text, useTheme } from "react-native-paper";
 import { EducationCardComplete } from "@/components/education/EducationCardComplete";
 import { ThemeContext } from "../_layout";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 const { height, width } = Dimensions.get("window");
 const widthBackground = height * 1.54;
@@ -33,11 +34,6 @@ export default function HomeScreen() {
   const [idEducation, setIdEducation] = useState("");
   const theme = useTheme();
   const { isDarkMode, toggleTheme } = useContext(ThemeContext);
-  const selected = education.experience.find(
-    (exp) => exp?.id.toString() === idEducation?.trim()
-  );
-  console.log("idEducation:", idEducation);
-  console.log("selected:", selected);
 
   return (
     <SafeAreaView>
@@ -61,6 +57,11 @@ export default function HomeScreen() {
             gap: 5,
           }}
         >
+          <FontAwesome
+            name="language"
+            size={24}
+            color={theme.colors.onSurface}
+          />
           <Switch value={isDarkMode} onValueChange={toggleTheme} />
           <Text variant="titleLarge" theme={theme}>
             Education
@@ -77,27 +78,29 @@ export default function HomeScreen() {
             style={styles.locationStart}
           />
         </View>
-        <FlatList
-          data={education.experience}
-          renderItem={({ item, index }) => (
-            <EducationCard
-              item={item}
-              index={index}
-              setIdEducation={setIdEducation}
-            />
-          )}
-          ListFooterComponent={() => (
-            <View style={{ alignSelf: "center" }}>
-              <LottieView
-                source={require("@/app/animation/locationEnd.json")}
-                autoPlay
-                loop
-                renderMode="SOFTWARE"
-                style={styles.locationStart}
+        <View style={{ paddingHorizontal: 10 }}>
+          <FlatList
+            data={education.experience}
+            renderItem={({ item, index }) => (
+              <EducationCard
+                item={item}
+                index={index}
+                setIdEducation={setIdEducation}
               />
-            </View>
-          )}
-        />
+            )}
+            ListFooterComponent={() => (
+              <View style={{ alignSelf: "center" }}>
+                <LottieView
+                  source={require("@/app/animation/locationEnd.json")}
+                  autoPlay
+                  loop
+                  renderMode="SOFTWARE"
+                  style={styles.locationStart}
+                />
+              </View>
+            )}
+          />
+        </View>
       </View>
       <EducationCardComplete
         visible={idEducation}
