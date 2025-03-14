@@ -1,0 +1,185 @@
+{
+  "experience": [
+    {
+      "id": 1,
+      "company": "theWeco",
+      "url": "https://www.theweco.mx/",
+      "location": {
+        "lat": 20.623889,
+        "long": -100.3901673
+      },
+      "site": "in-site",
+      "position": "Fullstack",
+      "start_date": "2016-06-01",
+      "end_date": "2016-07-07",
+      "responsibilities": [
+        "Developed interactive interfaces using React and Redux"
+      ],
+      "technologies": ["PHP", "Javascript", "mysql"],
+      "achievements": ["Reduced loading time by 30%"]
+    },
+    {
+      "id": 2,
+      "company": "Desiteg",
+      "location": {
+        "lat": 0,
+        "long": 0
+      },
+      "url": "https://desiteg.com/",
+      "site": "in-site",
+      "position": "Fullstack",
+      "start_date": "2016-07-07",
+      "end_date": "2019-05-01",
+      "responsibilities": [
+        "Developed REST APIs using Node.js and Express",
+        "Managed SQL and NoSQL databases",
+        "Implemented automated testing"
+      ],
+      "technologies": ["PHP", "Javascript", "MySQL", "PostgreSQL", "Odoo"],
+      "achievements": [
+        "Reduced production errors by 40%",
+        "Automated processes with CI/CD"
+      ]
+    },
+    {
+      "id": 3,
+      "company": "INDRA",
+      "location": {
+        "lat": 20.6154632,
+        "long": -100.406578
+      },
+      "url": "https://www.indracompany.com/",
+      "site": "in-site",
+      "position": "Fullstack",
+      "start_date": "2019-05-01",
+      "end_date": "2019-11-01",
+      "responsibilities": [
+        "Developed machine learning models",
+        "Optimized data processing algorithms",
+        "Deployed models in cloud environments"
+      ],
+      "technologies": [
+        "Python",
+        "Javascript",
+        "MySQL",
+        "PostgreSQL",
+        "Shell script"
+      ],
+      "achievements": [
+        "Optimized models reducing resource consumption by 25%",
+        "Implemented an automated ML pipeline"
+      ]
+    },
+    {
+      "id": 4,
+      "company": "Sphera",
+      "location": {
+        "lat": 20.6154632,
+        "long": -100.406578
+      },
+      "url": "https://sphera-ti.com/",
+      "position": "Fullstack",
+      "start_date": "2019-11-01",
+      "end_date": "2022-02-01",
+      "responsibilities": [
+        "Developed machine learning models",
+        "Optimized data processing algorithms",
+        "Deployed models in cloud environments"
+      ],
+      "technologies": [
+        "Python",
+        "Javascript",
+        "MySQL",
+        "PostgreSQL",
+        "Shell script"
+      ],
+      "achievements": [
+        "Optimized models reducing resource consumption by 25%",
+        "Implemented an automated ML pipeline"
+      ]
+    },
+    {
+      "id": 5,
+      "company": "Arkus Nexus",
+      "location": {
+        "lat": 0,
+        "long": 0
+      },
+      "url": "https://www.arkusnexus.com/",
+      "position": "React Developer",
+      "start_date": "2022-05-01",
+      "end_date": "Present",
+      "responsibilities": [
+        "Developed machine learning models",
+        "Optimized data processing algorithms",
+        "Deployed models in cloud environments"
+      ],
+      "technologies": [
+        "react",
+        "Javascript",
+        "nextjs",
+        "aws",
+        "reactnative",
+        "Django",
+        "Flask"
+      ],
+      "achievements": [
+        "Optimized models reducing resource consumption by 25%",
+        "Implemented an automated ML pipeline"
+      ]
+    },
+    {
+      "id": 6,
+      "company": "Softtek",
+      "location": {
+        "lat": 0,
+        "long": 0
+      },
+      "url": "https://www.softtek.com/es/",
+      "position": "AI Specialist",
+      "start_date": "2022-05-01",
+      "end_date": "2022-01-31",
+      "responsibilities": [
+        "Developed machine learning models",
+        "Optimized data processing algorithms",
+        "Deployed models in cloud environments"
+      ],
+      "technologies": [
+        "react",
+        "Javascript",
+        "nextjs",
+        "aws",
+        "reactnative",
+        "Django",
+        "Flask"
+      ],
+      "achievements": [
+        "Optimized models reducing resource consumption by 25%",
+        "Implemented an automated ML pipeline"
+      ]
+    },
+    {
+      "id": 7,
+      "company": "Rabbit",
+      "url": "https://rabbitmx.com/",
+      "location": {
+        "lat": 0,
+        "long": 0
+      },
+      "site": "Remote",
+      "position": "FrontEnd",
+      "start_date": "2023-01-01",
+      "end_date": "Present",
+      "responsibilities": [
+        "Developed machine learning models",
+        "Optimized data processing algorithms",
+        "Deployed models in cloud environments"
+      ],
+      "technologies": ["reactnative", "react", "Javascript", "nextjs", "aws"],
+      "achievements": [
+        "Optimized models reducing resource consumption by 25%",
+        "Implemented an automated ML pipeline"
+      ]
+    }
+  ]
+}

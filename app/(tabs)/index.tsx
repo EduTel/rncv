@@ -1,19 +1,13 @@
-import { useState } from "react";
-import {
-  Image,
-  StyleSheet,
-  Platform,
-  View,
-  Dimensions,
-  FlatList,
-} from "react-native";
+import { useState, useEffect, useContext } from "react";
+import { StyleSheet, View, Dimensions, FlatList } from "react-native";
 import LottieView from "lottie-react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import education from "@/assets/json/education.json";
+import education from "@/assets/json/educationEsp.json";
 import Fontisto from "@expo/vector-icons/Fontisto";
 import { EducationCard } from "@/components/education/EducationCard";
-import { Text, useTheme } from "react-native-paper";
+import { Switch, Text, useTheme } from "react-native-paper";
 import { EducationCardComplete } from "@/components/education/EducationCardComplete";
+import { ThemeContext } from "../_layout";
 
 const { height, width } = Dimensions.get("window");
 const widthBackground = height * 1.54;
@@ -38,6 +32,12 @@ export type Experience = {
 export default function HomeScreen() {
   const [idEducation, setIdEducation] = useState("");
   const theme = useTheme();
+  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
+  const selected = education.experience.find(
+    (exp) => exp?.id.toString() === idEducation?.trim()
+  );
+  console.log("idEducation:", idEducation);
+  console.log("selected:", selected);
 
   return (
     <SafeAreaView>
@@ -61,6 +61,7 @@ export default function HomeScreen() {
             gap: 5,
           }}
         >
+          <Switch value={isDarkMode} onValueChange={toggleTheme} />
           <Text variant="titleLarge" theme={theme}>
             Education
           </Text>
@@ -82,7 +83,7 @@ export default function HomeScreen() {
             <EducationCard
               item={item}
               index={index}
-              setVisible={setIdEducation}
+              setIdEducation={setIdEducation}
             />
           )}
           ListFooterComponent={() => (
@@ -100,11 +101,11 @@ export default function HomeScreen() {
       </View>
       <EducationCardComplete
         visible={idEducation}
-        setVisible={setIdEducation}
+        setIdEducation={setIdEducation}
         data={
-          education.experience.find(
-            (eduacation) => eduacation?.id === (idEducation as Number)
-          ) ?? ({} as Experience)
+          (education.experience.find(
+            (education) => education?.id.toString() === idEducation
+          ) ?? {}) as Experience
         }
       ></EducationCardComplete>
     </SafeAreaView>

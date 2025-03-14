@@ -7,19 +7,29 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
-import { useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { MD3DarkTheme, MD3LightTheme, PaperProvider } from "react-native-paper";
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+// Create a theme context to share the theme state across components
+export const ThemeContext = createContext({
+  isDarkMode: false,
+  toggleTheme: () => {},
+});
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
+  const [isDarkMode, setIsDarkMode] = useState(colorScheme === "dark");
+  console.log("isDarkMode", isDarkMode);
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+  const theme = isDarkMode ? MD3DarkTheme : MD3LightTheme;
 
   useEffect(() => {
     if (loaded) {
@@ -32,12 +42,16 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "light" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <PaperProvider theme={theme}>
+      <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
+        <ThemeProvider value={isDarkMode ? DarkTheme : DefaultTheme}>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+          <StatusBar style="auto" />
+        </ThemeProvider>
+      </ThemeContext.Provider>
+    </PaperProvider>
   );
 }

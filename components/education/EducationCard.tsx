@@ -1,16 +1,17 @@
+import { Experience } from "@/app/(tabs)";
 import { TouchableHighlight, View, StyleSheet } from "react-native";
 import { Text, useTheme, withTheme } from "react-native-paper";
 import { Shadow } from "react-native-shadow-2";
 
 type EducationCardProp = {
-  item: any;
+  item: Experience;
   index: number;
-  setVisible: (visible: string) => void;
+  setIdEducation: (visible: string) => void;
 };
 export const EducationCard = ({
   item,
   index,
-  setVisible,
+  setIdEducation,
 }: EducationCardProp) => {
   const theme = useTheme();
 
@@ -31,7 +32,7 @@ export const EducationCard = ({
         <TouchableHighlight
           underlayColor={theme.colors.background} // O el mismo color de fondo que uses
           onPress={() => {
-            setVisible(item.id);
+            setIdEducation(item.id.toString());
           }}
           style={[
             styles.itemContainer,
