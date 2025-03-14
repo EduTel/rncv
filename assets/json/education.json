@@ -1,9 +1,13 @@
 {
   "experience": [
     {
+      "id": 1,
       "company": "theWeco",
       "url": "https://www.theweco.mx/",
-      "location": "https://www.google.com/maps/place/wecompany/@20.623889,-100.3901673,17z/data=!3m1!4b1!4m6!3m5!1s0x85d35b1cb733ffff:0xfa15146a939cf003!8m2!3d20.623889!4d-100.3901673!16s%2Fg%2F11t6q8chgn?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D",
+      "location": {
+        "lat": 20.623889,
+        "long": -100.3901673
+      },
       "site": "in-site",
       "position": "Fullstack",
       "start_date": "2016-06-01",
@@ -15,8 +19,12 @@
       "achievements": ["Reduced loading time by 30%"]
     },
     {
+      "id": 2,
       "company": "Desiteg",
-      "location": "https://www.google.com/maps/place/Desiteg+-+Desarrollo+de+Software/data=!4m2!3m1!1s0x0:0x5edd07340f192e0b?sa=X&ved=1t:2428&ictx=111",
+      "location": {
+        "lat": 0,
+        "long": 0
+      },
       "url": "https://desiteg.com/",
       "site": "in-site",
       "position": "Fullstack",
@@ -34,8 +42,12 @@
       ]
     },
     {
+      "id": 3,
       "company": "INDRA",
-      "location": "https://www.google.com/maps/place/Corporativo+Banco+Santander+QRO./@20.6154631,-100.4274306,14z/data=!4m10!1m2!2m1!1sSantander!3m6!1s0x85d35ae8eb79123f:0x76684ee51df62564!8m2!3d20.6154632!4d-100.406578!15sCglTYW50YW5kZXIiA4gBAZIBEGNvcnBvcmF0ZV9vZmZpY2XgAQA!16s%2Fg%2F1trqhkvw?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D",
+      "location": {
+        "lat": 20.6154632,
+        "long": -100.406578
+      },
       "url": "https://www.indracompany.com/",
       "site": "in-site",
       "position": "Fullstack",
@@ -59,8 +71,12 @@
       ]
     },
     {
+      "id": 4,
       "company": "Sphera",
-      "location": "https://www.google.com/maps/place/Corporativo+Banco+Santander+QRO./@20.6154631,-100.4274306,14z/data=!4m10!1m2!2m1!1sSantander!3m6!1s0x85d35ae8eb79123f:0x76684ee51df62564!8m2!3d20.6154632!4d-100.406578!15sCglTYW50YW5kZXIiA4gBAZIBEGNvcnBvcmF0ZV9vZmZpY2XgAQA!16s%2Fg%2F1trqhkvw?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D",
+      "location": {
+        "lat": 20.6154632,
+        "long": -100.406578
+      },
       "url": "https://sphera-ti.com/",
       "position": "Fullstack",
       "start_date": "2019-11-01",
@@ -83,8 +99,12 @@
       ]
     },
     {
+      "id": 5,
       "company": "Arkus Nexus",
-      "location": "Remote",
+      "location": {
+        "lat": 0,
+        "long": 0
+      },
       "url": "https://www.arkusnexus.com/",
       "position": "React Developer",
       "start_date": "2022-05-01",
@@ -109,8 +129,12 @@
       ]
     },
     {
+      "id": 6,
       "company": "Softtek",
-      "location": "Remote",
+      "location": {
+        "lat": 0,
+        "long": 0
+      },
       "url": "https://www.softtek.com/es/",
       "position": "AI Specialist",
       "start_date": "2022-05-01",
@@ -135,9 +159,13 @@
       ]
     },
     {
+      "id": 7,
       "company": "Rabbit",
       "url": "https://rabbitmx.com/",
-      "location": "https://www.google.com/maps/place/Rabbit+MX+-+Corporativo/data=!4m2!3m1!1s0x0:0x60058eabee1cd96b?sa=X&ved=1t:2428&ictx=111",
+      "location": {
+        "lat": 0,
+        "long": 0
+      },
       "site": "Remote",
       "position": "FrontEnd",
       "start_date": "2023-01-01",

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Image,
   StyleSheet,
@@ -11,12 +12,33 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import education from "@/assets/json/education.json";
 import Fontisto from "@expo/vector-icons/Fontisto";
 import { EducationCard } from "@/components/education/EducationCard";
-import { Text } from "react-native-paper";
+import { Text, useTheme } from "react-native-paper";
+import { EducationCardComplete } from "@/components/education/EducationCardComplete";
 
 const { height, width } = Dimensions.get("window");
 const widthBackground = height * 1.54;
 
+export type Experience = {
+  id: number;
+  company: string;
+  url: string;
+  location: {
+    lat: number;
+    long: number;
+  };
+  site?: string;
+  position: string;
+  start_date: string;
+  end_date: string;
+  responsibilities: string[];
+  technologies: string[];
+  achievements: string[];
+};
+
 export default function HomeScreen() {
+  const [idEducation, setIdEducation] = useState("");
+  const theme = useTheme();
+
   return (
     <SafeAreaView>
       <View style={styles.animationContainer}>
@@ -31,7 +53,7 @@ export default function HomeScreen() {
       <View style={styles.contentContainer}>
         <View
           style={{
-            backgroundColor: "#fff",
+            backgroundColor: theme.colors.background,
             marginBottom: 10,
             paddingVertical: 5,
             flexDirection: "row",
@@ -39,8 +61,10 @@ export default function HomeScreen() {
             gap: 5,
           }}
         >
-          <Text variant="titleLarge">Education</Text>
-          <Fontisto name="date" size={24} color="black" />
+          <Text variant="titleLarge" theme={theme}>
+            Education
+          </Text>
+          <Fontisto name="date" size={24} color={theme.colors.onSurface} />
         </View>
         <View style={{ alignSelf: "center" }}>
           <LottieView
@@ -55,7 +79,11 @@ export default function HomeScreen() {
         <FlatList
           data={education.experience}
           renderItem={({ item, index }) => (
-            <EducationCard item={item} index={index} />
+            <EducationCard
+              item={item}
+              index={index}
+              setVisible={setIdEducation}
+            />
           )}
           ListFooterComponent={() => (
             <View style={{ alignSelf: "center" }}>
@@ -70,6 +98,15 @@ export default function HomeScreen() {
           )}
         />
       </View>
+      <EducationCardComplete
+        visible={idEducation}
+        setVisible={setIdEducation}
+        data={
+          education.experience.find(
+            (eduacation) => eduacation?.id === (idEducation as Number)
+          ) ?? ({} as Experience)
+        }
+      ></EducationCardComplete>
     </SafeAreaView>
   );
 }

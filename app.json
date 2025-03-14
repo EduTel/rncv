@@ -1,4 +1,11 @@
 {
+  "android": {
+    "config": {
+      "googleMaps": {
+        "apiKey": ""
+      }
+    }
+  },
   "expo": {
     "name": "rncv",
     "slug": "rncv",

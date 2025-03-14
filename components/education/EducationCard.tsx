@@ -1,21 +1,26 @@
 import { TouchableHighlight, View, StyleSheet } from "react-native";
-import { Text } from "react-native-paper";
+import { Text, useTheme, withTheme } from "react-native-paper";
 import { Shadow } from "react-native-shadow-2";
 
+type EducationCardProp = {
+  item: any;
+  index: number;
+  setVisible: (visible: string) => void;
+};
 export const EducationCard = ({
   item,
   index,
-}: {
-  item: any;
-  index: number;
-}) => {
+  setVisible,
+}: EducationCardProp) => {
+  const theme = useTheme();
+
   return (
     <View
-      style={
+      style={[
         index % 2 === 1
           ? { alignItems: "flex-end" }
-          : { alignItems: "flex-start" }
-      }
+          : { alignItems: "flex-start" },
+      ]}
     >
       <Shadow
         distance={15}
@@ -24,16 +29,29 @@ export const EducationCard = ({
         offset={[3, 4]}
       >
         <TouchableHighlight
-          underlayColor="#fff" // O el mismo color de fondo que uses
-          onPress={() => {}}
-          style={styles.itemContainer}
+          underlayColor={theme.colors.background} // O el mismo color de fondo que uses
+          onPress={() => {
+            setVisible(item.id);
+          }}
+          style={[
+            styles.itemContainer,
+            { backgroundColor: theme.colors.background },
+          ]}
         >
           <>
-            <Text variant="titleMedium">{item.company}</Text>
-            <Text variant="bodySmall">{item.position}</Text>
+            <Text variant="titleMedium" theme={theme}>
+              {item.company}
+            </Text>
+            <Text variant="bodySmall" theme={theme}>
+              {item.position}
+            </Text>
             <View style={{ flexDirection: "row" }}>
-              <Text variant="bodySmall">{item.start_date}</Text>
-              <Text variant="bodySmall">{item.end_date}</Text>
+              <Text variant="bodySmall" theme={theme}>
+                {item.start_date}
+              </Text>
+              <Text variant="bodySmall" theme={theme}>
+                {item.end_date}
+              </Text>
             </View>
           </>
         </TouchableHighlight>
@@ -49,7 +67,7 @@ const styles = StyleSheet.create({
     opacity: 1,
   },
   itemContainer: {
-    backgroundColor: "rgba(255, 255, 255, 0.8)",
+    //backgroundColor: "rgba(255, 255, 255, 0.8)",
     padding: 10,
     marginVertical: 5,
     borderRadius: 8,
