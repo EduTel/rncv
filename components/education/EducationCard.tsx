@@ -2,6 +2,8 @@ import { Experience } from "@/app/(tabs)";
 import { TouchableHighlight, View, StyleSheet } from "react-native";
 import { Text, useTheme, withTheme } from "react-native-paper";
 import { Shadow } from "react-native-shadow-2";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 
 type EducationCardProp = {
   item: Experience;
@@ -23,12 +25,7 @@ export const EducationCard = ({
           : { alignItems: "flex-start" },
       ]}
     >
-      <Shadow
-        distance={15}
-        startColor={"#eb9066d8"}
-        endColor={"#ff00ff10"}
-        offset={[3, 4]}
-      >
+      <Shadow distance={5} startColor={theme.colors.background} offset={[3, 4]}>
         <TouchableHighlight
           underlayColor={theme.colors.background} // O el mismo color de fondo que uses
           onPress={() => {
@@ -40,9 +37,22 @@ export const EducationCard = ({
           ]}
         >
           <>
-            <Text variant="titleMedium" theme={theme}>
-              {item.company}
-            </Text>
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Text variant="titleMedium" theme={theme}>
+                {item.company}
+              </Text>
+              <FontAwesome5
+                name="hand-pointer"
+                color={theme.colors.onSurface}
+              />
+            </View>
+
             <Text variant="bodySmall" theme={theme}>
               {item.position}
             </Text>
@@ -68,12 +78,10 @@ const styles = StyleSheet.create({
     opacity: 1,
   },
   itemContainer: {
-    //backgroundColor: "rgba(255, 255, 255, 0.8)",
-    padding: 10,
+    paddingHorizontal: 10,
     marginVertical: 5,
     borderRadius: 8,
     maxWidth: "50%",
-    //opacity: 0.7,
   },
   textSmall: {
     fontSize: 15,
