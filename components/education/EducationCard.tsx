@@ -1,4 +1,4 @@
-import { Experience } from "@/app/(tabs)";
+import { Experience } from "@/app/(tabs)/education";
 import { TouchableHighlight, View, StyleSheet } from "react-native";
 import { Text, useTheme, withTheme } from "react-native-paper";
 import { Shadow } from "react-native-shadow-2";

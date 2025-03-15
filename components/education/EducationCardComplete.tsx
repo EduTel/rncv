@@ -1,8 +1,14 @@
-import { Experience } from "@/app/(tabs)";
-import { useState } from "react";
-import { ScrollView, StyleSheet, TouchableHighlight, View } from "react-native";
+import { Experience } from "@/app/(tabs)/education";
+import { useCallback, useState } from "react";
+import {
+  ScrollView,
+  StyleSheet,
+  TouchableHighlight,
+  Linking,
+  View,
+} from "react-native";
 import MapView, { Marker } from "react-native-maps";
-import { Modal, Portal, Text, useTheme } from "react-native-paper";
+import { Button, Modal, Portal, Text, useTheme } from "react-native-paper";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Icon } from "@expo/vector-icons/build/createIconSet";
@@ -10,6 +16,7 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Fontisto from "@expo/vector-icons/Fontisto";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import Octicons from "@expo/vector-icons/Octicons";
+import { handlePressLink } from "@/utils/linking";
 
 type EducationCardProp = {
   visible: string;
@@ -49,21 +56,7 @@ export const EducationCardComplete = ({
   data,
 }: EducationCardProp) => {
   const theme = useTheme();
-
-  // Función para renderizar elementos de lista
-  const renderListItem = (text: string, icon: React.ReactNode, key: string) => (
-    <View
-      key={key}
-      style={{
-        flexDirection: "row",
-        alignItems: "center",
-        gap: 10,
-      }}
-    >
-      {icon}
-      <Text theme={theme}>{text}</Text>
-    </View>
-  );
+  const [url, setUrl] = useState("");
 
   return (
     <Portal>
@@ -80,9 +73,7 @@ export const EducationCardComplete = ({
             onPress={() => setIdEducation("")}
             underlayColor={theme.colors.background}
           >
-            <View
-              style={{ alignSelf: "flex-end", marginRight: 20, marginTop: 20 }}
-            >
+            <View style={{ alignSelf: "flex-end", marginRight: 20 }}>
               <AntDesign
                 name="closecircleo"
                 size={24}
@@ -90,8 +81,7 @@ export const EducationCardComplete = ({
               />
             </View>
           </TouchableHighlight>
-
-          <ScrollView>
+          <ScrollView style={{ marginTop: 20 }}>
             <View style={{ paddingHorizontal: 20 }}>
               {data?.company && (
                 <Text
@@ -102,6 +92,13 @@ export const EducationCardComplete = ({
                   {data?.company}
                 </Text>
               )}
+              <Button
+                icon="microsoft-internet-explorer"
+                mode="text"
+                onPress={() => handlePressLink(data?.url)}
+              >
+                {data?.url}
+              </Button>
               {data?.position && (
                 <Text theme={theme} variant="titleMedium">
                   {data?.position}

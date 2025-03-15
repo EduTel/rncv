@@ -1,154 +1,63 @@
-import { useState, useEffect, useContext } from "react";
-import { StyleSheet, View, Dimensions, FlatList } from "react-native";
-import LottieView from "lottie-react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import education from "@/assets/json/educationEsp.json";
-import Fontisto from "@expo/vector-icons/Fontisto";
-import { EducationCard } from "@/components/education/EducationCard";
-import { Switch, Text, useTheme } from "react-native-paper";
-import { EducationCardComplete } from "@/components/education/EducationCardComplete";
-import { ThemeContext } from "../_layout";
+import {
+  StyleSheet,
+  Image,
+  View,
+  SafeAreaView,
+  Dimensions,
+  ScrollView,
+} from "react-native";
+import profile from "@/assets/json/profileEsp.json";
+import Entypo from "@expo/vector-icons/Entypo";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { Button, Text, useTheme } from "react-native-paper";
+import { handlePressLink } from "@/utils/linking";
 
-const { height, width } = Dimensions.get("window");
-const widthBackground = height * 1.54;
+const { width } = Dimensions.get("window");
 
-export type Experience = {
-  id: number;
-  company: string;
-  url: string;
-  location: {
-    lat: number;
-    long: number;
-  };
-  site?: string;
-  position: string;
-  start_date: string;
-  end_date: string;
-  responsibilities: string[];
-  technologies: string[];
-  achievements: string[];
-};
-
-export default function HomeScreen() {
-  const [idEducation, setIdEducation] = useState("");
-  const theme = useTheme();
-  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
-
+export default function About() {
   return (
     <SafeAreaView>
-      <View style={styles.animationContainer}>
-        <LottieView
-          source={require("@/app/animation//GlobosAerostatico.json")}
-          autoPlay
-          loop
-          resizeMode="cover"
-          style={styles.animation}
+      <View style={styles.container}>
+        <Image
+          source={require("@/assets/images/profile.jpeg")}
+          style={styles.headerImage}
         />
       </View>
-      <View style={styles.contentContainer}>
-        <View
-          style={{
-            backgroundColor: theme.colors.background,
-            marginBottom: 10,
-            paddingVertical: 5,
-            flexDirection: "row",
-            justifyContent: "center",
-            gap: 5,
-          }}
-        >
-          <FontAwesome
-            name="language"
-            size={24}
-            color={theme.colors.onSurface}
-          />
-          <Switch value={isDarkMode} onValueChange={toggleTheme} />
-          <Text variant="titleLarge" theme={theme}>
-            Education
-          </Text>
-          <Fontisto name="date" size={24} color={theme.colors.onSurface} />
+      <ScrollView>
+        <View style={{ gap: 5 }}>
+          <Button
+            icon="microsoft-internet-explorer"
+            mode="text"
+            onPress={() => handlePressLink(profile?.url)}
+          >
+            {profile?.url.split(".com")[0]}
+          </Button>
+          <Text variant="headlineSmall">{profile.name}</Text>
+          <Text variant="headlineSmall">{profile.phone}</Text>
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
+            <Entypo name="email" size={24} color="black" />
+            <Text variant="headlineSmall">{profile.email}</Text>
+          </View>
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
+            <FontAwesome name="birthday-cake" size={24} color="black" />
+            <Text variant="headlineSmall">{profile.yearOfBirth}</Text>
+          </View>
         </View>
-        <View style={{ alignSelf: "center" }}>
-          <LottieView
-            source={require("@/app/animation/locationStart.json")}
-            autoPlay
-            loop
-            resizeMode="cover"
-            renderMode="SOFTWARE"
-            style={styles.locationStart}
-          />
-        </View>
-        <View style={{ paddingHorizontal: 10 }}>
-          <FlatList
-            data={education.experience}
-            renderItem={({ item, index }) => (
-              <EducationCard
-                item={item}
-                index={index}
-                setIdEducation={setIdEducation}
-              />
-            )}
-            ListFooterComponent={() => (
-              <View style={{ alignSelf: "center" }}>
-                <LottieView
-                  source={require("@/app/animation/locationEnd.json")}
-                  autoPlay
-                  loop
-                  renderMode="SOFTWARE"
-                  style={styles.locationStart}
-                />
-              </View>
-            )}
-          />
-        </View>
-      </View>
-      <EducationCardComplete
-        visible={idEducation}
-        setIdEducation={setIdEducation}
-        data={
-          (education.experience.find(
-            (education) => education?.id.toString() === idEducation
-          ) ?? {}) as Experience
-        }
-      ></EducationCardComplete>
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  locationStart: {
-    width: 100,
-    height: 100,
-    opacity: 1,
-  },
-  itemContainer: {
-    backgroundColor: "rgba(255, 255, 255, 0.8)",
-    padding: 10,
-    marginVertical: 5,
-    borderRadius: 8,
-    maxWidth: "50%",
-    //opacity: 0.7,
-  },
-  textSmall: {
-    fontSize: 15,
-  },
-  text: {
-    fontSize: 18,
-    fontWeight: "bold",
-  },
   container: {
-    flex: 1,
+    height: 200,
+    overflow: "hidden",
   },
-  contentContainer: {
-    zIndex: 1,
-  },
-  animation: {
-    width: widthBackground,
-    height: height,
-    marginLeft: -widthBackground / 2.2,
-  },
-  animationContainer: {
-    ...StyleSheet.absoluteFillObject,
-    zIndex: -1,
+  headerImage: {
+    width: width,
+    height: width,
+    resizeMode: "cover",
+    position: "absolute",
+    top: 0,
   },
 });

@@ -3,14 +3,11 @@ import React, { useContext } from "react";
 import { Platform } from "react-native";
 
 import { HapticTab } from "@/components/HapticTab";
-import { IconSymbol } from "@/components/ui/IconSymbol";
 import TabBarBackground from "@/components/ui/TabBarBackground";
 import { Colors } from "@/constants/Colors";
-import { useColorScheme } from "@/hooks/useColorScheme";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import { PaperProvider } from "react-native-paper";
 import { ThemeContext } from "../_layout";
 
 export default function TabLayout() {
@@ -38,16 +35,16 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          title: "Profile",
           tabBarIcon: ({ color }) => (
             <AntDesign name="home" size={24} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="education"
         options={{
-          title: "Explore",
+          title: "Education",
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="book-education-outline"
@@ -57,6 +54,7 @@ export default function TabLayout() {
           ),
         }}
       />
+
       <Tabs.Screen
         name="hobbies"
         options={{
