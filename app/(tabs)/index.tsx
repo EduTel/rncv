@@ -13,6 +13,8 @@ import { Button, Text, useTheme } from "react-native-paper";
 import { handlePressLink } from "@/utils/linking";
 import { Header } from "@/components/headers/headers";
 import Fontisto from "@expo/vector-icons/Fontisto";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import AntDesign from "@expo/vector-icons/AntDesign";
 
 const { width } = Dimensions.get("window");
 
@@ -25,7 +27,11 @@ export default function About() {
         <Text variant="titleLarge" theme={theme}>
           Profile
         </Text>
-        <Fontisto name="date" size={24} color={theme.colors.onSurface} />
+        <MaterialCommunityIcons
+          name="face-man-profile"
+          size={24}
+          color={theme.colors.onSurface}
+        />
       </Header>
       <View style={{ paddingHorizontal: 20 }}>
         <View style={styles.container}>
@@ -46,20 +52,23 @@ export default function About() {
             <Text theme={theme} variant="headlineSmall">
               {profile.name}
             </Text>
-            <Text theme={theme} variant="headlineSmall">
-              {profile.phone}
-            </Text>
-            <View
-              style={{ flexDirection: "row", alignItems: "center", gap: 5 }}
-            >
+            <View style={styles.descriptionContainer}>
+              <AntDesign
+                name="phone"
+                size={24}
+                color={theme.colors.onSurface}
+              />
+              <Text theme={theme} variant="headlineSmall">
+                {profile.phone}
+              </Text>
+            </View>
+            <View style={styles.descriptionContainer}>
               <Entypo name="email" size={24} color={theme.colors.onSurface} />
               <Text theme={theme} variant="headlineSmall">
                 {profile.email}
               </Text>
             </View>
-            <View
-              style={{ flexDirection: "row", alignItems: "center", gap: 5 }}
-            >
+            <View style={styles.descriptionContainer}>
               <FontAwesome
                 name="birthday-cake"
                 size={24}
@@ -77,6 +86,11 @@ export default function About() {
 }
 
 const styles = StyleSheet.create({
+  descriptionContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+  },
   container: {
     overflow: "hidden",
     alignItems: "center",

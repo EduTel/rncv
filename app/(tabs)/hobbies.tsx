@@ -7,11 +7,15 @@ const widthBackground = height * 1.54;
 import * as FileSystem from "expo-file-system";
 import AwesomeGallery from "react-native-awesome-gallery";
 import { Header } from "@/components/headers/headers";
+import { Switch, Text, useTheme } from "react-native-paper";
+import Fontisto from "@expo/vector-icons/Fontisto";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 const imgDir = FileSystem.bundleDirectory + "assets/hobbies/";
 // Checks if gif directory exists. If not, creates it
 
 export default function Hobbies() {
+  const theme = useTheme();
   const [images, setImages] = useState<any[]>([]);
 
   useEffect(() => {
@@ -33,7 +37,16 @@ export default function Hobbies() {
 
   return (
     <SafeAreaView>
-      <Header />
+      <Header>
+        <Text variant="titleLarge" theme={theme}>
+          Profile
+        </Text>
+        <FontAwesome
+          name="soccer-ball-o"
+          size={24}
+          color={theme.colors.onSurface}
+        />
+      </Header>
       <FlatList
         numColumns={2} // Para mostrar las imágenes en columnas
         data={images}

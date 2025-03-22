@@ -10,6 +10,7 @@ import { EducationCardComplete } from "@/components/education/EducationCardCompl
 import { ThemeContext } from "../_layout";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Header } from "@/components/headers/headers";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const { height, width } = Dimensions.get("window");
 const widthBackground = height * 1.54;
@@ -51,7 +52,7 @@ export default function Education() {
           <Text variant="titleLarge" theme={theme}>
             Education
           </Text>
-          <Fontisto name="date" size={24} color={theme.colors.onSurface} />
+          <Ionicons name="school" size={24} color={theme.colors.onSurface} />
         </Header>
         <View style={{ alignSelf: "center" }}>
           <LottieView
