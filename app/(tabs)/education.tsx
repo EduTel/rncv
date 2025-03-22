@@ -9,6 +9,7 @@ import { Switch, Text, useTheme } from "react-native-paper";
 import { EducationCardComplete } from "@/components/education/EducationCardComplete";
 import { ThemeContext } from "../_layout";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { Header } from "@/components/headers/headers";
 
 const { height, width } = Dimensions.get("window");
 const widthBackground = height * 1.54;
@@ -33,7 +34,6 @@ export type Experience = {
 export default function Education() {
   const [idEducation, setIdEducation] = useState("");
   const theme = useTheme();
-  const { isDarkMode, toggleTheme } = useContext(ThemeContext);
 
   return (
     <SafeAreaView>
@@ -47,27 +47,12 @@ export default function Education() {
         />
       </View>
       <View style={styles.contentContainer}>
-        <View
-          style={{
-            backgroundColor: theme.colors.background,
-            marginBottom: 10,
-            paddingVertical: 5,
-            flexDirection: "row",
-            justifyContent: "center",
-            gap: 5,
-          }}
-        >
-          <FontAwesome
-            name="language"
-            size={24}
-            color={theme.colors.onSurface}
-          />
-          <Switch value={isDarkMode} onValueChange={toggleTheme} />
+        <Header>
           <Text variant="titleLarge" theme={theme}>
             Education
           </Text>
           <Fontisto name="date" size={24} color={theme.colors.onSurface} />
-        </View>
+        </Header>
         <View style={{ alignSelf: "center" }}>
           <LottieView
             source={require("@/app/animation/locationStart.json")}

@@ -6,6 +6,7 @@ const { height, width } = Dimensions.get("window");
 const widthBackground = height * 1.54;
 import * as FileSystem from "expo-file-system";
 import AwesomeGallery from "react-native-awesome-gallery";
+import { Header } from "@/components/headers/headers";
 
 const imgDir = FileSystem.bundleDirectory + "assets/hobbies/";
 // Checks if gif directory exists. If not, creates it
@@ -32,6 +33,7 @@ export default function Hobbies() {
 
   return (
     <SafeAreaView>
+      <Header />
       <FlatList
         numColumns={2} // Para mostrar las imágenes en columnas
         data={images}

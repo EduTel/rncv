@@ -11,6 +11,8 @@ import Entypo from "@expo/vector-icons/Entypo";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Button, Text, useTheme } from "react-native-paper";
 import { handlePressLink } from "@/utils/linking";
+import { Header } from "@/components/headers/headers";
+import Fontisto from "@expo/vector-icons/Fontisto";
 
 const { width } = Dimensions.get("window");
 
@@ -19,6 +21,12 @@ export default function About() {
 
   return (
     <SafeAreaView>
+      <Header>
+        <Text variant="titleLarge" theme={theme}>
+          Profile
+        </Text>
+        <Fontisto name="date" size={24} color={theme.colors.onSurface} />
+      </Header>
       <View style={{ paddingHorizontal: 20 }}>
         <View style={styles.container}>
           <Image
