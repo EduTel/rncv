@@ -44,7 +44,11 @@ export const EducationCard = ({
                 alignItems: "center",
               }}
             >
-              <Text variant="titleMedium" theme={theme}>
+              <Text
+                variant="titleMedium"
+                theme={theme}
+                style={{ fontFamily: "Orbitron_400Regular" }}
+              >
                 {item.company}
               </Text>
               <FontAwesome5
@@ -53,14 +57,26 @@ export const EducationCard = ({
               />
             </View>
 
-            <Text variant="bodySmall" theme={theme}>
+            <Text
+              variant="bodySmall"
+              theme={theme}
+              style={{ fontFamily: "Orbitron_400Regular" }}
+            >
               {item.position}
             </Text>
             <View style={{ flexDirection: "row" }}>
-              <Text variant="bodySmall" theme={theme}>
+              <Text
+                variant="bodySmall"
+                theme={theme}
+                style={{ fontFamily: "Orbitron_400Regular" }}
+              >
                 {item.start_date}
               </Text>
-              <Text variant="bodySmall" theme={theme}>
+              <Text
+                variant="bodySmall"
+                theme={theme}
+                style={{ fontFamily: "Orbitron_400Regular" }}
+              >
                 {item.end_date}
               </Text>
             </View>

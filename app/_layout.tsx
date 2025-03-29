@@ -25,7 +25,6 @@ export default function RootLayout() {
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
   const [isDarkMode, setIsDarkMode] = useState(colorScheme === "dark");
-  console.log("isDarkMode", isDarkMode);
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
   };

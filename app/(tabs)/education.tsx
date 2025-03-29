@@ -49,7 +49,11 @@ export default function Education() {
       </View>
       <View style={styles.contentContainer}>
         <Header>
-          <Text variant="titleLarge" theme={theme}>
+          <Text
+            variant="titleLarge"
+            theme={theme}
+            style={{ fontFamily: "Orbitron_400Regular" }}
+          >
             Education
           </Text>
           <Ionicons name="school" size={24} color={theme.colors.onSurface} />
