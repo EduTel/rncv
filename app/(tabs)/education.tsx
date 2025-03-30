@@ -39,14 +39,16 @@ export default function Education() {
   return (
     <SafeAreaView>
       <View style={styles.animationContainer}>
-        <LottieView
+        {/* <LottieView
           source={require("@/app/animation//GlobosAerostatico.json")}
           autoPlay
           loop
           resizeMode="cover"
           style={styles.animation}
         />
+            */}
       </View>
+
       <View style={styles.contentContainer}>
         <Header>
           <Text
@@ -100,7 +102,7 @@ export default function Education() {
             (education) => education?.id.toString() === idEducation
           ) ?? {}) as Experience
         }
-      ></EducationCardComplete>
+      />
     </SafeAreaView>
   );
 }

@@ -108,6 +108,7 @@ export const EducationCardComplete = ({
                 style={{
                   flexDirection: "row",
                   justifyContent: "space-between",
+                  marginLeft: 20,
                 }}
               >
                 {data?.start_date && (
@@ -125,19 +126,17 @@ export const EducationCardComplete = ({
               </View>
 
               {data?.technologies?.length > 0 && (
-                <Text theme={theme} variant="titleMedium">
-                  technologies:{" "}
+                <Text
+                  theme={theme}
+                  variant="titleMedium"
+                  style={{ marginVertical: 10 }}
+                >
+                  technologies:
                 </Text>
               )}
               {data?.technologies?.map?.((data) => {
                 return (
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      alignItems: "center",
-                      gap: 10,
-                    }}
-                  >
+                  <View style={style.list}>
                     {getTechnologyIcon(data, theme.colors.onSurface)}
                     <Text theme={theme}>{data}</Text>
                   </View>
@@ -145,19 +144,17 @@ export const EducationCardComplete = ({
               })}
 
               {data?.responsibilities?.length > 0 && (
-                <Text theme={theme} variant="titleMedium">
+                <Text
+                  theme={theme}
+                  variant="titleMedium"
+                  style={{ marginVertical: 10 }}
+                >
                   responsibilities:
                 </Text>
               )}
               {data?.responsibilities?.map?.((data) => {
                 return (
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      alignItems: "center",
-                      gap: 10,
-                    }}
-                  >
+                  <View style={style.list}>
                     <Octicons
                       name="tasklist"
                       size={24}
@@ -168,19 +165,17 @@ export const EducationCardComplete = ({
                 );
               })}
               {data?.achievements?.length > 0 && (
-                <Text theme={theme} variant="titleMedium">
+                <Text
+                  theme={theme}
+                  variant="titleMedium"
+                  style={{ marginVertical: 10 }}
+                >
                   {"achievements:"}
                 </Text>
               )}
               {data?.achievements?.map?.((data) => {
                 return (
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      alignItems: "center",
-                      gap: 10,
-                    }}
-                  >
+                  <View style={style.list}>
                     <Octicons
                       name="tasklist"
                       size={24}
@@ -190,7 +185,11 @@ export const EducationCardComplete = ({
                   </View>
                 );
               })}
-              <Text theme={theme} variant="titleMedium">
+              <Text
+                theme={theme}
+                variant="titleMedium"
+                style={{ marginVertical: 10 }}
+              >
                 {"Location:"}
               </Text>
               <MapView style={style.map}>
@@ -221,5 +220,11 @@ const style = StyleSheet.create({
   map: {
     width: "100%",
     height: 200,
+  },
+  list: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    marginLeft: 20,
   },
 });

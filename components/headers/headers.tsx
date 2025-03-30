@@ -19,7 +19,7 @@ export const Header = ({ children }: { children: React.ReactNode }) => {
       />
       <View
         style={{
-          backgroundColor: theme.dark ? "dark" : "light",
+          //backgroundColor: theme.dark ? "dark" : "light",
           paddingHorizontal: 10,
           marginBottom: 10,
         }}
@@ -45,8 +45,8 @@ export const Header = ({ children }: { children: React.ReactNode }) => {
                   backgroundColor: isDarkMode ? "white" : "black",
                 },
                 isDarkMode
-                  ? { backgroundColor: theme.colors.onPrimary }
-                  : { backgroundColor: theme.colors.outline },
+                  ? { backgroundColor: "#c493db" }
+                  : { backgroundColor: "#6a6b66" },
               ]}
             >
               <Animated.View
@@ -78,9 +78,9 @@ export const Header = ({ children }: { children: React.ReactNode }) => {
                   }}
                 >
                   {isDarkMode ? (
-                    <Feather name="moon" size={24} color="black" />
+                    <Feather name="moon" size={24} color="#fff" />
                   ) : (
-                    <Feather name="sun" size={24} color="black" />
+                    <Feather name="sun" size={24} color="#c8e00b" />
                   )}
                 </Pressable>
               </Animated.View>

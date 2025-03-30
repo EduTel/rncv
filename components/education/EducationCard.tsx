@@ -1,9 +1,13 @@
 import { Experience } from "@/app/(tabs)/education";
-import { TouchableHighlight, View, StyleSheet } from "react-native";
+import { TouchableHighlight, View, StyleSheet, Dimensions } from "react-native";
 import { Text, useTheme, withTheme } from "react-native-paper";
 import { Shadow } from "react-native-shadow-2";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
+
+// Get screen dimensions
+const { width } = Dimensions.get("window");
+const CARD_WIDTH = width * 0.45; // 45% of screen width
 
 type EducationCardProp = {
   item: Experience;
@@ -33,7 +37,7 @@ export const EducationCard = ({
           }}
           style={[
             styles.itemContainer,
-            { backgroundColor: theme.colors.background },
+            { backgroundColor: theme.colors.background, width: CARD_WIDTH },
           ]}
         >
           <>
@@ -70,14 +74,7 @@ export const EducationCard = ({
                 theme={theme}
                 style={{ fontFamily: "Orbitron_400Regular" }}
               >
-                {item.start_date}
-              </Text>
-              <Text
-                variant="bodySmall"
-                theme={theme}
-                style={{ fontFamily: "Orbitron_400Regular" }}
-              >
-                {item.end_date}
+                {` ${item.start_date} - ${item.end_date}`}
               </Text>
             </View>
           </>
@@ -97,7 +94,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginVertical: 5,
     borderRadius: 8,
-    maxWidth: "50%",
   },
   textSmall: {
     fontSize: 15,
