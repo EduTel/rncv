@@ -19,7 +19,7 @@ export const Header = ({ children }: { children: React.ReactNode }) => {
       />
       <View
         style={{
-          backgroundColor: theme.colors.background,
+          backgroundColor: theme.dark ? "dark" : "light",
           paddingHorizontal: 10,
           marginBottom: 10,
         }}

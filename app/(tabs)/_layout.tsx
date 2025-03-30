@@ -39,6 +39,9 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <AntDesign name="home" size={24} color={color} />
           ),
+          tabBarLabelStyle: {
+            fontFamily: "Orbitron_400Regular",
+          },
         }}
       />
       <Tabs.Screen
@@ -52,6 +55,9 @@ export default function TabLayout() {
               color={color}
             />
           ),
+          tabBarLabelStyle: {
+            fontFamily: "Orbitron_400Regular",
+          },
         }}
       />
 
@@ -62,6 +68,9 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => (
             <FontAwesome name="gamepad" size={24} color={color} />
           ),
+          tabBarLabelStyle: {
+            fontFamily: "Orbitron_400Regular",
+          },
         }}
       />
     </Tabs>
