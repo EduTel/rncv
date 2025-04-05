@@ -1,5 +1,5 @@
 import { Experience } from "@/app/(tabs)/education";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useContext, useRef, useState } from "react";
 import {
   ScrollView,
   StyleSheet,
@@ -16,6 +16,7 @@ import Fontisto from "@expo/vector-icons/Fontisto";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import Octicons from "@expo/vector-icons/Octicons";
 import { handlePressLink } from "@/utils/linking";
+import { ThemeContext } from "@/app/_layout";
 
 type EducationCardProp = {
   visible: string;
@@ -58,6 +59,7 @@ export const EducationCardComplete = ({
   const [url, setUrl] = useState("");
   const mapRef = useRef<MapView>(null);
   const [zoomLevel, setZoomLevel] = useState(0.01);
+  const { isDarkMode } = useContext(ThemeContext);
 
   const handlePressAnimateToRegion = useCallback((mapRef: React.RefObject<MapView>, latitudeDelta: number,longitudeDelta: number ) => {
     if (mapRef.current) {
@@ -208,6 +210,7 @@ export const EducationCardComplete = ({
               </Text>
               <View>
                 <MapView
+                  userInterfaceStyle={isDarkMode? 'dark': 'light'}
                   ref={mapRef}
                   style={style.map}
                   initialRegion={{
