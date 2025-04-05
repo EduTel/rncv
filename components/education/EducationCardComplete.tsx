@@ -57,7 +57,7 @@ export const EducationCardComplete = ({
   const theme = useTheme();
   const [url, setUrl] = useState("");
   const mapRef = useRef<MapView>(null);
-  const [zoomLevel, setZoomLevel] = useState(15);
+  const [zoomLevel, setZoomLevel] = useState(0.01);
 
   const handlePressAnimateToRegion = useCallback((mapRef: React.RefObject<MapView>, latitudeDelta: number,longitudeDelta: number ) => {
     if (mapRef.current) {
@@ -230,10 +230,10 @@ export const EducationCardComplete = ({
                 >
                   <TouchableHighlight
                     onPress={() => {
-                      const newZoom = zoomLevel + 1;
-                      const latitudeDelta = 0.01 * 0.5;
-                      const longitudeDelta = 0.01 * 0.5;
+                      const latitudeDelta = zoomLevel * 0.5;
+                      const longitudeDelta = zoomLevel * 0.5;
                       handlePressAnimateToRegion(mapRef, latitudeDelta, longitudeDelta);
+                      setZoomLevel(latitudeDelta);
                     }}
                     underlayColor={theme.colors.surfaceVariant}
                   >
@@ -245,10 +245,10 @@ export const EducationCardComplete = ({
                   </TouchableHighlight>
                   <TouchableHighlight
                     onPress={() => {
-                      const newZoom = zoomLevel - 1;
-                      const latitudeDelta= 0.01 / 0.5;
-                      const longitudeDelta= 0.01 / 0.5;
+                      const latitudeDelta = zoomLevel / 0.5;
+                      const longitudeDelta = zoomLevel / 0.5;
                       handlePressAnimateToRegion(mapRef,latitudeDelta,longitudeDelta)
+                      setZoomLevel(latitudeDelta);
                     }}
                     underlayColor={theme.colors.surfaceVariant}
                   >
