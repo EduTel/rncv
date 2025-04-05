@@ -1,5 +1,5 @@
 import { Experience } from "@/app/(tabs)/education";
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import {
   ScrollView,
   StyleSheet,
@@ -7,11 +7,10 @@ import {
   Linking,
   View,
 } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker, Camera } from "react-native-maps";
 import { Button, Modal, Portal, Text, useTheme } from "react-native-paper";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { Icon } from "@expo/vector-icons/build/createIconSet";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Fontisto from "@expo/vector-icons/Fontisto";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
@@ -57,7 +56,22 @@ export const EducationCardComplete = ({
 }: EducationCardProp) => {
   const theme = useTheme();
   const [url, setUrl] = useState("");
+  const mapRef = useRef<MapView>(null);
+  const [zoomLevel, setZoomLevel] = useState(15);
 
+  const handlePressAnimateToRegion = useCallback((mapRef: React.RefObject<MapView>, latitudeDelta: number,longitudeDelta: number ) => {
+    if (mapRef.current) {
+      mapRef.current.animateToRegion(
+        {
+          latitude: data?.location?.lat,
+          longitude: data?.location?.long,
+          latitudeDelta: latitudeDelta,
+          longitudeDelta: longitudeDelta,
+        },
+        300
+      );
+    }
+  }, []);
   return (
     <Portal>
       <Modal
@@ -131,12 +145,12 @@ export const EducationCardComplete = ({
                   variant="titleMedium"
                   style={{ marginVertical: 10 }}
                 >
-                  technologies:
+                  Technologies:
                 </Text>
               )}
-              {data?.technologies?.map?.((data) => {
+              {data?.technologies?.map?.((data, index) => {
                 return (
-                  <View style={style.list}>
+                  <View style={style.list} key={"Technologies"+index}>
                     {getTechnologyIcon(data, theme.colors.onSurface)}
                     <Text theme={theme}>{data}</Text>
                   </View>
@@ -149,12 +163,12 @@ export const EducationCardComplete = ({
                   variant="titleMedium"
                   style={{ marginVertical: 10 }}
                 >
-                  responsibilities:
+                  Responsibilities:
                 </Text>
               )}
-              {data?.responsibilities?.map?.((data) => {
+              {data?.responsibilities?.map?.((data, index) => {
                 return (
-                  <View style={style.list}>
+                  <View style={style.list} key={"Responsibilities"+index}>
                     <Octicons
                       name="tasklist"
                       size={24}
@@ -170,12 +184,12 @@ export const EducationCardComplete = ({
                   variant="titleMedium"
                   style={{ marginVertical: 10 }}
                 >
-                  {"achievements:"}
+                  Achievements:
                 </Text>
               )}
-              {data?.achievements?.map?.((data) => {
+              {data?.achievements?.map?.((data, index) => {
                 return (
-                  <View style={style.list}>
+                  <View style={style.list} key={"Achievements"+index}>
                     <Octicons
                       name="tasklist"
                       size={24}
@@ -192,15 +206,60 @@ export const EducationCardComplete = ({
               >
                 {"Location:"}
               </Text>
-              <MapView style={style.map}>
-                <Marker
-                  coordinate={{
+              <View>
+                <MapView
+                  ref={mapRef}
+                  style={style.map}
+                  initialRegion={{
                     latitude: data?.location?.lat,
                     longitude: data?.location?.long,
+                    latitudeDelta: 0.01,
+                    longitudeDelta: 0.01,
                   }}
-                  title={data.company}
-                />
-              </MapView>
+                >
+                  <Marker
+                    coordinate={{
+                      latitude: data?.location?.lat,
+                      longitude: data?.location?.long,
+                    }}
+                    title={data.company}
+                  />
+                </MapView>
+                <View
+                  style={style.btnZoomContainer}
+                >
+                  <TouchableHighlight
+                    onPress={() => {
+                      const newZoom = zoomLevel + 1;
+                      const latitudeDelta = 0.01 * 0.5;
+                      const longitudeDelta = 0.01 * 0.5;
+                      handlePressAnimateToRegion(mapRef, latitudeDelta, longitudeDelta);
+                    }}
+                    underlayColor={theme.colors.surfaceVariant}
+                  >
+                    <AntDesign
+                      name="plus"
+                      size={24}
+                      color={theme.colors.onSurface}
+                    />
+                  </TouchableHighlight>
+                  <TouchableHighlight
+                    onPress={() => {
+                      const newZoom = zoomLevel - 1;
+                      const latitudeDelta= 0.01 / 0.5;
+                      const longitudeDelta= 0.01 / 0.5;
+                      handlePressAnimateToRegion(mapRef,latitudeDelta,longitudeDelta)
+                    }}
+                    underlayColor={theme.colors.surfaceVariant}
+                  >
+                   <AntDesign
+                      name="minus"
+                      size={24}
+                      color={theme.colors.onSurface}
+                    />
+                  </TouchableHighlight>
+                </View>
+              </View>
             </View>
           </ScrollView>
         </View>
@@ -210,6 +269,12 @@ export const EducationCardComplete = ({
 };
 
 const style = StyleSheet.create({
+  btnZoomContainer: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    gap: 10,
+    marginTop: 10,
+  },
   containerStyle: {
     backgroundColor: "white",
     padding: 20,

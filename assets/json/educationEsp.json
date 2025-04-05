@@ -22,8 +22,8 @@
       "id": 2,
       "company": "Desiteg",
       "location": {
-        "lat": 0,
-        "long": 0
+        "lat": 20.5904183,
+        "long": -100.3649745
       },
       "url": "https://desiteg.com/",
       "site": "in-site",
@@ -102,8 +102,8 @@
       "id": 5,
       "company": "Arkus Nexus",
       "location": {
-        "lat": 0,
-        "long": 0
+        "lat": 32.5066512,
+        "long": -117.0587501
       },
       "url": "https://www.arkusnexus.com/",
       "position": "React Developer",
@@ -132,8 +132,8 @@
       "id": 6,
       "company": "Softtek",
       "location": {
-        "lat": 0,
-        "long": 0
+        "lat": 20.6188288,
+        "long": -100.4298666
       },
       "url": "https://www.softtek.com/es/",
       "position": "AI Specialist",
