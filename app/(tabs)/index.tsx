@@ -16,9 +16,18 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useFonts, Orbitron_400Regular } from "@expo-google-fonts/orbitron";
 
+import { BarChart } from "react-native-gifted-charts";
+import randomColor from "randomcolor";
 const { width } = Dimensions.get("window");
 
 export default function About() {
+  const data= profile.ability.map((item) => ({
+    value: item.value,
+    frontColor: randomColor(),
+    label: item.name,
+  }));
+
+ 
   const theme = useTheme();
   let [fontsLoaded] = useFonts({
     Orbitron_400Regular,
@@ -112,6 +121,7 @@ export default function About() {
               </View>
             </View>
           </View>
+          <BarChart data = {data} barStyle={{width: "100%"}}/>
         </ScrollView>
       </View>
     </SafeAreaView>
@@ -135,3 +145,4 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
   },
 });
+
