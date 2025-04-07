@@ -13,10 +13,15 @@
       "start_date": "2016-06-01",
       "end_date": "2016-07-07",
       "responsibilities": [
-        "Developed interactive interfaces using React and Redux"
+        "Diseñar y desarrollar páginas web responsivas orientadas al sector automotriz, asegurando compatibilidad en múltiples dispositivos y navegadores."
+        "Implementar nuevas funcionalidades en sitios existentes, así como realizar mantenimiento y corrección de errores para garantizar una experiencia de usuario fluida."
+        "Administrar tanto el frontend como el backend de los sitios web, además de gestionar la configuración y seguimiento de eventos mediante Google Analytics para obtener métricas clave de comportamiento del usuario."
       ],
       "technologies": ["PHP", "Javascript", "mysql"],
-      "achievements": ["Reduced loading time by 30%"]
+      "achievements": [
+        "Incrementamos significativamente la cantidad de sitios web asociados en el sector automotriz, ampliando nuestra presencia digital y mejorando el alcance de nuestros servicios.",
+        " Implementamos nuevas tecnologías y librerías, lo que permitió optimizar la calidad y la eficiencia del código, asegurando un sistema más mantenible y actualizado a las mejores prácticas del desarrollo web.",
+        "Reducimos de manera notable las quejas sobre sitios web previamente desarrollados, a través de actualizaciones y mejoras continuas en la funcionalidad y el diseño, garantizando una experiencia de usuario más fluida y satisfactoria."]
     },
     {
       "id": 2,
