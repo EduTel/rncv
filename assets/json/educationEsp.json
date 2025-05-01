@@ -13,8 +13,8 @@
       "start_date": "2016-06-01",
       "end_date": "2016-07-07",
       "responsibilities": [
-        "Diseñar y desarrollar páginas web responsivas orientadas al sector automotriz, asegurando compatibilidad en múltiples dispositivos y navegadores."
-        "Implementar nuevas funcionalidades en sitios existentes, así como realizar mantenimiento y corrección de errores para garantizar una experiencia de usuario fluida."
+        "Diseñar y desarrollar páginas web responsivas orientadas al sector automotriz, asegurando compatibilidad en múltiples dispositivos y navegadores.",
+        "Implementar nuevas funcionalidades en sitios existentes, así como realizar mantenimiento y corrección de errores para garantizar una experiencia de usuario fluida.",
         "Administrar tanto el frontend como el backend de los sitios web, además de gestionar la configuración y seguimiento de eventos mediante Google Analytics para obtener métricas clave de comportamiento del usuario."
       ],
       "technologies": ["PHP", "Javascript", "mysql"],
@@ -36,14 +36,14 @@
       "start_date": "2016-07-07",
       "end_date": "2019-05-01",
       "responsibilities": [
-        "Developed REST APIs using Node.js and Express",
-        "Managed SQL and NoSQL databases",
-        "Implemented automated testing"
+        "Crear nuevos módulos de facturación personalizados para los distintos clientes existentes.",
+        "Automatizar el proceso de conciliación de pagos con múltiples proveedores.",
+        "Desarrollar nuevos módulos o adaptar los existentes dentro del ERP Odoo, según los requerimientos del negocio."
       ],
       "technologies": ["PHP", "Javascript", "MySQL", "PostgreSQL", "Odoo"],
       "achievements": [
-        "Reduced production errors by 40%",
-        "Automated processes with CI/CD"
+        "Automatizar el proceso de conciliacion en un 90% de los pagos.",
+        "Integración con proveedores autorizados de facturación electrónica para emisión y timbrado de comprobantes fiscales."
       ]
     },
     {

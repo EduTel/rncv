@@ -2,7 +2,6 @@ import {
   StyleSheet,
   Image,
   View,
-  SafeAreaView,
   Dimensions,
   ScrollView,
 } from "react-native";
@@ -18,18 +17,22 @@ import { useFonts, Orbitron_400Regular } from "@expo-google-fonts/orbitron";
 
 import { BarChart } from "react-native-gifted-charts";
 import randomColor from "randomcolor";
-const { width } = Dimensions.get("window");
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 export default function About() {
+  const theme = useTheme();
+
   const data= profile.ability.map((item) => ({
     value: item.value,
     frontColor: randomColor(),
     label: item.name,
+    labelTextStyle: {
+      color: theme.colors.onSurface
+    },
   }));
 
- 
-  const theme = useTheme();
-  let [fontsLoaded] = useFonts({
+   let [fontsLoaded] = useFonts({
     Orbitron_400Regular,
   });
 
@@ -121,7 +124,7 @@ export default function About() {
               </View>
             </View>
           </View>
-          <BarChart data = {data} barStyle={{width: "100%"}}/>
+          <BarChart data={data} barStyle={styles.barStyle}/>
         </ScrollView>
       </View>
     </SafeAreaView>
@@ -129,6 +132,9 @@ export default function About() {
 }
 
 const styles = StyleSheet.create({
+  barStyle:{
+    width: "100%"
+  },
   descriptionContainer: {
     flexDirection: "row",
     alignItems: "center",

@@ -1,4 +1,4 @@
-import { Image, StyleSheet, View, Dimensions, FlatList } from "react-native";
+import { Image, StyleSheet, View, Dimensions, SectionList } from "react-native";
 import { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -16,19 +16,31 @@ const imgDir = FileSystem.bundleDirectory + "assets/hobbies/";
 
 export default function Hobbies() {
   const theme = useTheme();
-  const [images, setImages] = useState<any[]>([]);
+  const [images, setImages] = useState< {
+        title: string;
+        data: any[];
+    }[]>([]);
 
   useEffect(() => {
     // Definir las imágenes dentro de tu carpeta de recursos
     const imagePaths = [
-      require("@/assets/hobbies/IMG_0037.jpeg"),
-      require("@/assets/hobbies/IMG_0266.jpeg"),
-      require("@/assets/hobbies/IMG_0549.jpeg"),
-      require("@/assets/hobbies/IMG_2092.jpeg"),
-      require("@/assets/hobbies/IMG_5206.jpeg"),
-      require("@/assets/hobbies/IMG_6292.jpeg"),
-      require("@/assets/hobbies/IMG_8966.jpeg"),
-      require("@/assets/hobbies/IMG_9991.jpeg"),
+      {
+        title: 'Viajes',
+        data: [
+          [require("@/assets/hobbies/IMG_2092.jpeg"),
+          require("@/assets/hobbies/IMG_5206.jpeg")],
+          [require("@/assets/hobbies/IMG_6292.jpeg"),
+          require("@/assets/hobbies/IMG_0266.jpeg")],
+        ],
+      },
+      {
+        title: 'Fotografía',
+        data: [ [require("@/assets/hobbies/IMG_0037.jpeg"),
+          require("@/assets/hobbies/IMG_0549.jpeg")],
+          [require("@/assets/hobbies/IMG_9991.jpeg"),
+          require("@/assets/hobbies/IMG_8966.jpeg")],
+        ],
+      }
       // Agrega aquí todas las imágenes que tengas en tu carpeta
     ];
 
@@ -47,15 +59,27 @@ export default function Hobbies() {
           color={theme.colors.onSurface}
         />
       </Header>
-      <FlatList
-        numColumns={2} // Para mostrar las imágenes en columnas
-        data={images}
+      <SectionList
+        keyExtractor={(item, index) => "SectionList" + index}
+        sections={images}
+        renderSectionHeader={({section: {title}}) => (
+          <Text   style={{
+            fontFamily: "Orbitron_400Regular",
+          }} variant="titleLarge">{title}</Text>
+        )}
         renderItem={({ item }) => (
           <View style={styles.imageContainer}>
             <Image
-              source={item}
-              style={{ width: width / 2 - 15, height: 400 }}
+              source={item[0]}
+              style={{ width: width / 2, height: 400 }}
             />
+            {
+              item?.[1] && <Image
+                source={item[1]}
+                style={{ width: width / 2, height: 400 }}
+              />
+            }
+            
           </View>
         )}
       />
@@ -76,9 +100,11 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   imageContainer: {
-    borderRadius: 10,
+    //borderRadius: 10,
     overflow: "hidden",
-    margin: 5,
+    //margin: 5,
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   itemContainer: {
     backgroundColor: "rgba(255, 255, 255, 0.8)",

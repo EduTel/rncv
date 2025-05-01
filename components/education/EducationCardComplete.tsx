@@ -97,8 +97,8 @@ export const EducationCardComplete = ({
               />
             </View>
           </TouchableHighlight>
-          <ScrollView style={{ marginTop: 20 }}>
-            <View style={{ paddingHorizontal: 20 }}>
+          <ScrollView contentContainerStyle={{ paddingHorizontal: 20 }}>
+            <View>
               {data?.company && (
                 <Text
                   style={{ alignSelf: "center", fontWeight: "bold" }}
@@ -176,7 +176,7 @@ export const EducationCardComplete = ({
                       size={24}
                       color={theme.colors.onSurface}
                     />
-                    <Text theme={theme}>{data}</Text>
+                    <Text style={{flex: 1, flexWrap: 'wrap'}} theme={theme}>{data}</Text>
                   </View>
                 );
               })}
@@ -197,7 +197,7 @@ export const EducationCardComplete = ({
                       size={24}
                       color={theme.colors.onSurface}
                     />
-                    <Text theme={theme}>{data}</Text>
+                    <Text style={{flex: 1, flexWrap: 'wrap'}} theme={theme}>{data}</Text>
                   </View>
                 );
               })}
@@ -291,7 +291,7 @@ const style = StyleSheet.create({
   },
   list: {
     flexDirection: "row",
-    alignItems: "center",
+    //alignItems: "center",
     gap: 10,
     marginLeft: 20,
   },

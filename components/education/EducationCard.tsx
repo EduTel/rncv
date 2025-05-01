@@ -29,7 +29,7 @@ export const EducationCard = ({
           : { alignItems: "flex-start" },
       ]}
     >
-      <Shadow distance={5} startColor={theme.colors.background} offset={[3, 4]}>
+      <Shadow startColor={theme.dark ? "#000": "#cfd4d1"} endColor={theme.dark ? "#222423": "#fff" } style={{ width: "100%", marginBottom: 20}}  sides={{ bottom: true, top: true, start: true, end: true }}>
         <TouchableHighlight
           underlayColor={theme.colors.background} // O el mismo color de fondo que uses
           onPress={() => {
@@ -37,7 +37,7 @@ export const EducationCard = ({
           }}
           style={[
             styles.itemContainer,
-            { backgroundColor: theme.colors.background, width: CARD_WIDTH },
+            { backgroundColor: theme.dark ? "#000": "#fff", width: CARD_WIDTH },
           ]}
         >
           <>

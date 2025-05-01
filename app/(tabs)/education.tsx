@@ -5,10 +5,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import education from "@/assets/json/educationEsp.json";
 import Fontisto from "@expo/vector-icons/Fontisto";
 import { EducationCard } from "@/components/education/EducationCard";
-import { Switch, Text, useTheme } from "react-native-paper";
+import { Text, useTheme } from "react-native-paper";
 import { EducationCardComplete } from "@/components/education/EducationCardComplete";
-import { ThemeContext } from "../_layout";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Header } from "@/components/headers/headers";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
@@ -60,6 +58,7 @@ export default function Education() {
           </Text>
           <Ionicons name="school" size={24} color={theme.colors.onSurface} />
         </Header>
+        {/*
         <View style={{ alignSelf: "center" }}>
           <LottieView
             source={require("@/app/animation/locationStart.json")}
@@ -70,8 +69,10 @@ export default function Education() {
             style={styles.locationStart}
           />
         </View>
+        */}
         <View style={{ paddingHorizontal: 10 }}>
           <FlatList
+          contentContainerStyle={styles.flatList}
             data={education.experience}
             renderItem={({ item, index }) => (
               <EducationCard
@@ -82,13 +83,13 @@ export default function Education() {
             )}
             ListFooterComponent={() => (
               <View style={{ alignSelf: "center" }}>
-                <LottieView
+               {/* <LottieView
                   source={require("@/app/animation/locationEnd.json")}
                   autoPlay
                   loop
                   renderMode="SOFTWARE"
                   style={styles.locationStart}
-                />
+                />*/}
               </View>
             )}
           />
@@ -108,6 +109,9 @@ export default function Education() {
 }
 
 const styles = StyleSheet.create({
+  flatList:{
+    marginHorizontal: 10
+  },
   locationStart: {
     width: 100,
     height: 100,

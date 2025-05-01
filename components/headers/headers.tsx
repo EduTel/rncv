@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { ThemeContext } from "@/app/_layout";
 import { StatusBar } from "expo-status-bar";
 import Feather from "@expo/vector-icons/Feather";
+import { Shadow } from "react-native-shadow-2";
 
 export const Header = ({ children }: { children: React.ReactNode }) => {
   const theme = useTheme();
@@ -17,79 +18,81 @@ export const Header = ({ children }: { children: React.ReactNode }) => {
         backgroundColor={theme.colors.surface}
         style={theme.dark ? "light" : "dark"}
       />
-      <View
-        style={{
-          //backgroundColor: theme.dark ? "dark" : "light",
-          paddingHorizontal: 10,
-          marginBottom: 10,
-        }}
-      >
-        <View style={[styles.header, { alignItems: "center" }]}>
-          <View style={{ flexDirection: "row", gap: 5 }}>{children}</View>
-          <View style={{ flexDirection: "row", gap: 5 }}>
-            <FontAwesome
-              name="language"
-              size={24}
-              color={theme.colors.onSurface}
-            />
-            <View
-              style={[
-                {
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  borderWidth: 1,
-                  borderRadius: 50,
-                  width: 70,
-                  paddingVertical: 2,
-                  paddingHorizontal: 2,
-                  backgroundColor: isDarkMode ? "white" : "black",
-                },
-                isDarkMode
-                  ? { backgroundColor: "#c493db" }
-                  : { backgroundColor: "#6a6b66" },
-              ]}
-            >
-              <Animated.View
+      <Shadow startColor={theme.dark ? "#000": "#939694"} endColor={theme.dark ? "#222423": "#fff" } style={{ width: "100%", marginBottom: 20}}  sides={{ bottom: true, top: false, start: false, end: false }}>
+        <View
+          style={{
+            //backgroundColor: theme.dark ? "dark" : "light",
+            paddingHorizontal: 10,
+            marginBottom: 10,
+          }}
+        >
+          <View style={[styles.header, { alignItems: "center" }]}>
+            <View style={{ flexDirection: "row", gap: 5 }}>{children}</View>
+            <View style={{ flexDirection: "row", gap: 5 }}>
+              <FontAwesome
+                name="language"
+                size={24}
+                color={theme.colors.onSurface}
+              />
+              <View
                 style={[
                   {
-                    height: "100%",
-                    width: "40%",
-                    transform: [
-                      {
-                        translateX: new Animated.Value(
-                          isDarkMode ? 1 : 0
-                        ).interpolate({
-                          inputRange: [0, 1],
-                          outputRange: [0, 30], // Moves 30 units right when toggled
-                        }),
-                      },
-                    ],
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    borderWidth: 1,
+                    borderRadius: 50,
+                    width: 70,
+                    paddingVertical: 2,
+                    paddingHorizontal: 2,
+                    backgroundColor: isDarkMode ? "white" : "black",
                   },
+                  isDarkMode
+                    ? { backgroundColor: "#c493db" }
+                    : { backgroundColor: "#6a6b66" },
                 ]}
               >
-                <Pressable
-                  onPress={() => {
-                    Animated.timing(new Animated.Value(isDarkMode ? 1 : 0), {
-                      toValue: isDarkMode ? 0 : 1,
-                      duration: 300,
-                      useNativeDriver: true,
-                    }).start();
-                    toggleTheme();
-                  }}
+                <Animated.View
+                  style={[
+                    {
+                      height: "100%",
+                      width: "40%",
+                      transform: [
+                        {
+                          translateX: new Animated.Value(
+                            isDarkMode ? 1 : 0
+                          ).interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [0, 30], // Moves 30 units right when toggled
+                          }),
+                        },
+                      ],
+                    },
+                  ]}
                 >
-                  {isDarkMode ? (
-                    <Feather name="moon" size={24} color="#fff" />
-                  ) : (
-                    <Feather name="sun" size={24} color="#c8e00b" />
-                  )}
-                </Pressable>
-              </Animated.View>
-            </View>
+                  <Pressable
+                    onPress={() => {
+                      Animated.timing(new Animated.Value(isDarkMode ? 1 : 0), {
+                        toValue: isDarkMode ? 0 : 1,
+                        duration: 300,
+                        useNativeDriver: true,
+                      }).start();
+                      toggleTheme();
+                    }}
+                  >
+                    {isDarkMode ? (
+                      <Feather name="moon" size={24} color="#fff" />
+                    ) : (
+                      <Feather name="sun" size={24} color="#c8e00b" />
+                    )}
+                  </Pressable>
+                </Animated.View>
+              </View>
 
-            <Switch value={isDarkMode} onValueChange={toggleTheme} />
+              <Switch value={isDarkMode} onValueChange={toggleTheme} />
+            </View>
           </View>
         </View>
-      </View>
+      </Shadow>
     </>
   );
 };
