@@ -17,6 +17,7 @@ import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import Octicons from "@expo/vector-icons/Octicons";
 import { handlePressLink } from "@/utils/linking";
 import { ThemeContext } from "@/app/_layout";
+import { useTranslation } from "react-i18next";
 
 type EducationCardProp = {
   visible: string;
@@ -55,6 +56,7 @@ export const EducationCardComplete = ({
   setIdEducation,
   data,
 }: EducationCardProp) => {
+  const { t } = useTranslation();
   const theme = useTheme();
   const [url, setUrl] = useState("");
   const mapRef = useRef<MapView>(null);

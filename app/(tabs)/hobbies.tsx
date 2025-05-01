@@ -51,7 +51,7 @@ export default function Hobbies() {
     <SafeAreaView>
       <Header>
         <Text variant="titleLarge" theme={theme}>
-          Profile
+          Hobbies
         </Text>
         <FontAwesome
           name="soccer-ball-o"

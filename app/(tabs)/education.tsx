@@ -2,13 +2,16 @@ import { useState, useEffect, useContext } from "react";
 import { StyleSheet, View, Dimensions, FlatList } from "react-native";
 import LottieView from "lottie-react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import education from "@/assets/json/educationEsp.json";
+import educationEs from "@/assets/json/educationEsp.json";
+import educationEn from "@/assets/json/educationEng.json";
+
 import Fontisto from "@expo/vector-icons/Fontisto";
 import { EducationCard } from "@/components/education/EducationCard";
 import { Text, useTheme } from "react-native-paper";
 import { EducationCardComplete } from "@/components/education/EducationCardComplete";
 import { Header } from "@/components/headers/headers";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { Lang, langContext } from "../_layout";
 
 const { height, width } = Dimensions.get("window");
 const widthBackground = height * 1.54;
@@ -31,6 +34,7 @@ export type Experience = {
 };
 
 export default function Education() {
+  const {lang} = useContext(langContext)
   const [idEducation, setIdEducation] = useState("");
   const theme = useTheme();
 
@@ -73,7 +77,7 @@ export default function Education() {
         <View style={{ paddingHorizontal: 10 }}>
           <FlatList
           contentContainerStyle={styles.flatList}
-            data={education.experience}
+            data={(lang === Lang.es ? educationEs: educationEn ).experience}
             renderItem={({ item, index }) => (
               <EducationCard
                 item={item}
@@ -99,7 +103,7 @@ export default function Education() {
         visible={idEducation}
         setIdEducation={setIdEducation}
         data={
-          (education.experience.find(
+          ((lang === Lang.es ? educationEs: educationEn ).experience.find(
             (education) => education?.id.toString() === idEducation
           ) ?? {}) as Experience
         }
