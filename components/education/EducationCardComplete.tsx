@@ -64,18 +64,16 @@ export const EducationCardComplete = ({
   const { isDarkMode } = useContext(ThemeContext);
 
   const handlePressAnimateToRegion = useCallback((mapRef: React.RefObject<MapView>, latitudeDelta: number,longitudeDelta: number ) => {
-    if (mapRef.current) {
-      mapRef.current.animateToRegion(
-        {
-          latitude: data?.location?.lat,
-          longitude: data?.location?.long,
-          latitudeDelta: latitudeDelta,
-          longitudeDelta: longitudeDelta,
-        },
-        300
-      );
-    }
-  }, []);
+    mapRef?.current?.animateToRegion?.(
+      {
+        latitude: data?.location?.lat,
+        longitude: data?.location?.long,
+        latitudeDelta: latitudeDelta,
+        longitudeDelta: longitudeDelta,
+      },
+      300
+    );
+  }, [data?.location?.lat, data?.location?.long,]);
   return (
     <Portal>
       <Modal
@@ -203,14 +201,50 @@ export const EducationCardComplete = ({
                   </View>
                 );
               })}
-              <Text
-                theme={theme}
-                variant="titleMedium"
-                style={{ marginVertical: 10 }}
-              >
-                {"Location:"}
-              </Text>
               <View>
+                <View
+                    style={style.btnZoomContainer}
+                  >
+                  <Text
+                    theme={theme}
+                    variant="titleMedium"
+                    style={{ marginVertical: 10 }}
+                  >
+                    {"Location:"}
+                  </Text>
+                  <View style={{ flexDirection: 'row', gap: 10, alignItems:'center'}}>
+                    <TouchableHighlight
+                      onPress={() => {
+                        const latitudeDelta = zoomLevel * 0.5;
+                        const longitudeDelta = zoomLevel * 0.5;
+                        handlePressAnimateToRegion(mapRef, latitudeDelta, longitudeDelta);
+                        setZoomLevel(latitudeDelta);
+                      }}
+                      underlayColor={theme.colors.surfaceVariant}
+                    >
+                      <AntDesign
+                        name="plus"
+                        size={24}
+                        color={theme.colors.onSurface}
+                      />
+                    </TouchableHighlight>
+                    <TouchableHighlight
+                      onPress={() => {
+                        const latitudeDelta = zoomLevel / 0.5;
+                        const longitudeDelta = zoomLevel / 0.5;
+                        handlePressAnimateToRegion(mapRef,latitudeDelta,longitudeDelta)
+                        setZoomLevel(latitudeDelta);
+                      }}
+                      underlayColor={theme.colors.surfaceVariant}
+                    >
+                    <AntDesign
+                        name="minus"
+                        size={24}
+                        color={theme.colors.onSurface}
+                      />
+                    </TouchableHighlight>
+                  </View>
+                </View>
                 <MapView
                   userInterfaceStyle={isDarkMode? 'dark': 'light'}
                   ref={mapRef}
@@ -224,46 +258,12 @@ export const EducationCardComplete = ({
                 >
                   <Marker
                     coordinate={{
-                      latitude: data?.location?.lat,
-                      longitude: data?.location?.long,
+                      latitude: data?.location?.lat ?? 0,
+                      longitude: data?.location?.long ?? 0,
                     }}
                     title={data.company}
                   />
                 </MapView>
-                <View
-                  style={style.btnZoomContainer}
-                >
-                  <TouchableHighlight
-                    onPress={() => {
-                      const latitudeDelta = zoomLevel * 0.5;
-                      const longitudeDelta = zoomLevel * 0.5;
-                      handlePressAnimateToRegion(mapRef, latitudeDelta, longitudeDelta);
-                      setZoomLevel(latitudeDelta);
-                    }}
-                    underlayColor={theme.colors.surfaceVariant}
-                  >
-                    <AntDesign
-                      name="plus"
-                      size={24}
-                      color={theme.colors.onSurface}
-                    />
-                  </TouchableHighlight>
-                  <TouchableHighlight
-                    onPress={() => {
-                      const latitudeDelta = zoomLevel / 0.5;
-                      const longitudeDelta = zoomLevel / 0.5;
-                      handlePressAnimateToRegion(mapRef,latitudeDelta,longitudeDelta)
-                      setZoomLevel(latitudeDelta);
-                    }}
-                    underlayColor={theme.colors.surfaceVariant}
-                  >
-                   <AntDesign
-                      name="minus"
-                      size={24}
-                      color={theme.colors.onSurface}
-                    />
-                  </TouchableHighlight>
-                </View>
               </View>
             </View>
           </ScrollView>
@@ -276,9 +276,7 @@ export const EducationCardComplete = ({
 const style = StyleSheet.create({
   btnZoomContainer: {
     flexDirection: "row",
-    justifyContent: "flex-end",
-    gap: 10,
-    marginTop: 10,
+    justifyContent: "space-between",
   },
   containerStyle: {
     backgroundColor: "white",
