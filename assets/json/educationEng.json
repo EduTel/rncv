@@ -102,8 +102,8 @@
       "id": 5,
       "company": "Arkus Nexus",
       "location": {
-        "lat": 0,
-        "long": 0
+        "lat": 32.5066512,
+        "long": -117.0587501
       },
       "url": "https://www.arkusnexus.com/",
       "position": "React Developer",
@@ -132,8 +132,8 @@
       "id": 6,
       "company": "Softtek",
       "location": {
-        "lat": 0,
-        "long": 0
+        "lat": 20.6188288,
+        "long": -100.4298666
       },
       "url": "https://www.softtek.com/es/",
       "position": "AI Specialist",
@@ -163,8 +163,8 @@
       "company": "Rabbit",
       "url": "https://rabbitmx.com/",
       "location": {
-        "lat": 0,
-        "long": 0
+        "lat": 19.3592782,
+        "long": -99.2817194
       },
       "site": "Remote",
       "position": "FrontEnd",

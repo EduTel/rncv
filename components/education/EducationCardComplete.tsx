@@ -201,7 +201,7 @@ export const EducationCardComplete = ({
                   </View>
                 );
               })}
-              <View>
+              {data?.location?.lat && <View>
                 <View
                     style={style.btnZoomContainer}
                   >
@@ -264,7 +264,7 @@ export const EducationCardComplete = ({
                     title={data.company}
                   />
                 </MapView>
-              </View>
+              </View>}
             </View>
           </ScrollView>
         </View>
